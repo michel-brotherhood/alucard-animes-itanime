@@ -1,4 +1,4 @@
-import heroVideo from "@/assets/hero-video-new.mp4";
+import videoHome from "@/assets/video_home.mp4";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -74,7 +74,7 @@ const Hero = () => {
                 {/* Main Video */}
                 <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden border-8 md:border-[12px] border-foreground/80 shadow-2xl bg-sky-400">
                   <video 
-                    src={heroVideo}
+                    src={videoHome}
                     autoPlay
                     loop
                     muted

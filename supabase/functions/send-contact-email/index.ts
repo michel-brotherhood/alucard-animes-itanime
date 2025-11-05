@@ -64,7 +64,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: "Contato <no-reply@alucardanimes.com.br>",
-      to: ["contato@alucardanimes.com.br"],
+      to: ["itanime@alucardanimes.com.br"],
       reply_to: formData.email || undefined,
       subject: subject,
       html: `
