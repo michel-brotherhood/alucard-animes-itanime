@@ -73,7 +73,7 @@ const Ingressos = () => {
             COMO VAI SER A SUA AVENTURA?
           </h1>
           <p className="text-base md:text-lg text-foreground/80 max-w-3xl mx-auto">
-            Compare os ingressos e encontre a opção perfeita para a aventura que você quer viver no <span className="font-bold text-primary">Friburgo Geek Natal</span>.
+            Compare os ingressos e encontre a opção perfeita para a aventura que você quer viver no <span className="font-bold text-primary">Itanime</span>.
             <br className="hidden sm:block" />
             <span className="block sm:inline mt-2 sm:mt-0">Todos os ingressos possuem disponibilidade limitada.</span>
           </p>

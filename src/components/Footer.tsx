@@ -1,6 +1,6 @@
 import { Facebook, Instagram, MessageCircle, MapPin, Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import friburgoGeekLogo from "@/assets/friburgo-geek-logo.png";
+import itanimeLogo from "@/assets/itanime-logo.svg";
 import "./Footer.css";
 
 const Footer = () => {
@@ -9,9 +9,9 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <img src={friburgoGeekLogo} alt="Friburgo Geek" className="h-20 mb-4" />
+            <img src={itanimeLogo} alt="Itanime" className="h-20 mb-4" />
             <p className="text-white/80">
-              O maior evento geek de Nova Friburgo. Uma experiência inesquecível para todos os fãs!
+              O maior evento geek de Itaboraí. Uma experiência inesquecível para todos os fãs!
             </p>
           </div>
 
@@ -31,7 +31,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-white/80">
                 <Calendar className="w-4 h-4 text-accent" />
-                <span>14 de Dezembro de 2025</span>
+                <span>07 de Dezembro de 2025</span>
               </li>
               <li className="flex items-center gap-2 text-white/80">
                 <Clock className="w-4 h-4 text-accent" />
@@ -39,7 +39,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-white/80">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span>Sindicato Dos Têxteis</span>
+                <span>Rotary Club de Itaboraí</span>
               </li>
             </ul>
           </div>
@@ -47,13 +47,13 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-4">Redes Sociais</h4>
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/friburgogeek/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-accent hover:text-secondary transition-all">
+              <a href="https://www.instagram.com/eventoitanime/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-accent hover:text-secondary transition-all">
                 <Instagram className="w-5 h-5 text-white" />
               </a>
-              <a href="https://www.facebook.com/friburgogeek" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-accent hover:text-secondary transition-all">
+              <a href="https://www.facebook.com/eventoitanime/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-accent hover:text-secondary transition-all">
                 <Facebook className="w-5 h-5 text-white" />
               </a>
-              <a href="https://api.whatsapp.com/send/?phone=5521977498015&text=Olá!+Gostaria+de+informações+sobre+o+Friburgo+Geek&type=phone_number" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-accent hover:text-secondary transition-all">
+              <a href="https://api.whatsapp.com/send/?phone=5521977498015&text=Olá!+Gostaria+de+informações+sobre+o+Itanime&type=phone_number" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-3 rounded-full hover:bg-accent hover:text-secondary transition-all">
                 <MessageCircle className="w-5 h-5 text-white" />
               </a>
             </div>
@@ -62,7 +62,7 @@ const Footer = () => {
 
         <div className="pt-8">
           <p className="text-white/60 text-center mb-2">
-            © 2025 Friburgo Geek Natal - Produzido por Alucard Animes. Todos os direitos reservados.
+            © 2025 Itanime - Produzido por Alucard Animes. Todos os direitos reservados.
           </p>
           <p className="text-white/40 text-center text-sm">
             Desenvolvido por Michel Brotherhood

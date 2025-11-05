@@ -60,7 +60,7 @@ const ConcursoAnimeke = () => {
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
-          to: 'friburgogeek@alucardanimes.com.br',
+          to: 'itanime@alucardanimes.com.br',
           subject: 'Nova Inscrição - Campeonato Animekê',
           formData: values,
           formType: 'Campeonato Animekê'
@@ -153,7 +153,7 @@ const ConcursoAnimeke = () => {
               <div>
                 <h4 className="font-bold text-accent mb-3 text-lg">1) INTRODUÇÃO</h4>
                 <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li><strong>1.1</strong> – O campeonato de Animekê no Friburgo Geek é um concurso cultural de canto onde são apresentadas <strong>APENAS músicas de anime</strong>. A letra da música NÃO poderá aparecer no telão durante a apresentação</li>
+                  <li><strong>1.1</strong> – O campeonato de Animekê no Itanime é um concurso cultural de canto onde são apresentadas <strong>APENAS músicas de anime</strong>. A letra da música NÃO poderá aparecer no telão durante a apresentação</li>
                   <li><strong>1.2</strong> – O concurso é aberto para pessoas com idade superior a 03 anos; sendo vetada a participação de parceiros do evento, jurados, equipe organizadora do evento</li>
                   <li><strong>1.3</strong> – O participante concorda em liberar o uso da sua imagem para fins de divulgação</li>
                 </ul>
@@ -389,7 +389,7 @@ const ConcursoAnimeke = () => {
                     <p className="text-white/90 text-sm md:text-base">
                       Dúvidas? {" "}
                       <a 
-                        href="mailto:friburgogeek@alucardanimes.com.br?subject=Dúvida%20-%20Campeonato%20Animekê"
+                        href="mailto:itanime@alucardanimes.com.br?subject=Dúvida%20-%20Campeonato%20Animekê"
                         className="text-accent hover:text-accent/80 underline font-semibold transition-colors"
                       >
                         Fale com a equipe Alucard

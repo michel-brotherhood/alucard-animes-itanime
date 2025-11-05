@@ -87,8 +87,8 @@ const Contato = () => {
     try {
       const { data: result, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
-          to: 'friburgogeek@alucardanimes.com.br',
-          subject: 'Novo Contato - Friburgo Geek',
+          to: 'itanime@alucardanimes.com.br',
+          subject: 'Novo Contato - Itanime',
           formData: data,
           formType: 'Formulário de Contato'
         }
@@ -308,7 +308,7 @@ const Contato = () => {
                 </p>
                 <div className="flex justify-center">
                   <a
-                    href="https://api.whatsapp.com/send/?phone=5521977498015&text=Olá!+Gostaria+de+informações+sobre+o+Friburgo+Geek&type=phone_number"
+                    href="https://api.whatsapp.com/send/?phone=5521977498015&text=Olá!+Gostaria+de+informações+sobre+o+Itanime&type=phone_number"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-colors"

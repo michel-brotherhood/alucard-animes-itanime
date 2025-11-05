@@ -55,7 +55,7 @@ const Concursos = () => {
             CONCURSOS
           </h1>
           <p className="text-xl text-white/90 text-center mb-12">
-            Participe das competições e mostre seu talento no Friburgo Geek Natal!
+            Participe das competições e mostre seu talento no Itanime!
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">

@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 const faqs = [
   {
     question: "Quando será realizado o evento?",
-    answer: "14 de dezembro de 2025."
+    answer: "07 de dezembro de 2025."
   },
   {
     question: "Onde será realizado?",
-    answer: "Sindicato Dos Têxteis, Rua Augusto Spinelli, nº84 – Centro, Nova Friburgo – RJ."
+    answer: "Rotary Club de Itaboraí - R. Des. Ferreira Pinto, 226 - Centro, Itaboraí - RJ."
   },
   {
     question: "Qual o horário?",
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: "É um evento para toda família?",
-    answer: "Sim, o Friburgo Geek Natal é um evento familiar."
+    answer: "Sim, o Itanime é um evento familiar."
   },
   {
     question: "Tem que pagar para entrar?",

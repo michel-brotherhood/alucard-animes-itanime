@@ -54,7 +54,7 @@ const MapaEvento = () => {
             MAPA DO EVENTO
           </h1>
           <p className="text-xl text-white/90 text-center mb-12">
-            Sindicato Dos Têxteis - Nova Friburgo/RJ
+            Rotary Club de Itaboraí - Itaboraí/RJ
           </p>
 
           {/* Mapa visual simplificado */}
@@ -88,7 +88,7 @@ const MapaEvento = () => {
           <div className="mt-12 bg-accent/20 backdrop-blur-sm rounded-xl p-6 border-2 border-accent">
             <h3 className="text-2xl font-black text-accent mb-4">📍 Como Chegar</h3>
             <p className="text-white/90 mb-4">
-              <strong>Endereço:</strong> Rua Augusto Spinelli, nº84 - Centro, Nova Friburgo - RJ
+              <strong>Endereço:</strong> R. Des. Ferreira Pinto, 226 - Centro, Itaboraí - RJ
             </p>
             <p className="text-white/90 mb-4">
               <strong>Horário:</strong> 12:00 às 18:00 horas

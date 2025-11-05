@@ -39,7 +39,7 @@ const LineUp = () => {
             LINE-UP
           </h1>
           <p className="text-xl text-white/90 text-center mb-12">
-            Conheça os incríveis artistas confirmados para o Friburgo Geek Natal!
+            Conheça os incríveis artistas confirmados para o Itanime!
           </p>
 
           <div className="space-y-12">
@@ -73,7 +73,7 @@ const LineUp = () => {
                           <div className="w-32 h-32 mx-auto mb-4 flex items-center justify-center">
                             <img 
                               src={eventLogo} 
-                              alt="Friburgo Geek"
+                              alt="Itanime"
                               className="w-full h-full object-contain opacity-50"
                             />
                           </div>
@@ -117,7 +117,7 @@ const LineUp = () => {
             Não perca essa experiência! 🎉
           </h3>
           <p className="text-white/90 text-lg mb-6">
-            Garanta seu ingresso agora e curta todos os artistas e atrações do Friburgo Geek Natal!
+            Garanta seu ingresso agora e curta todos os artistas e atrações do Itanime!
           </p>
           <a 
             href="/#ingressos" 
