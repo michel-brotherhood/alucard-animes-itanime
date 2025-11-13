@@ -84,6 +84,20 @@ const Concursos = () => {
             ))}
           </div>
 
+          <div className="bg-accent/20 backdrop-blur-sm rounded-3xl p-8 border-2 border-accent mb-8">
+            <h2 className="text-3xl font-black text-accent mb-6 text-center">
+              🏆 Quer ser Jurado de Cosplay?
+            </h2>
+            <p className="text-white/90 text-center mb-6">
+              Estamos abrindo vagas para jurado(a) de concurso de cosplay! Cachê de R$ 300,00 pelo dia de atuação.
+            </p>
+            <Link to="/concursos/jurado-cosplay" className="block max-w-md mx-auto">
+              <Button className="w-full bg-accent text-primary hover:bg-accent/90 font-bold text-lg py-6 rounded-full">
+                QUERO SER JURADO
+              </Button>
+            </Link>
+          </div>
+
           <div className="bg-accent/20 backdrop-blur-sm rounded-3xl p-8 border-2 border-accent">
             <h2 className="text-3xl font-black text-accent mb-6 text-center">
               📋 Informações Importantes

@@ -21,6 +21,7 @@ import Ajuda from "./pages/Ajuda";
 import Contato from "./pages/Contato";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import QuemSomos from "./pages/QuemSomos";
+import JuradoCosplay from "./pages/JuradoCosplay";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/concursos/kpop" element={<ConcursoKpop />} />
           <Route path="/concursos/animeke" element={<ConcursoAnimeke />} />
           <Route path="/concursos/videogames" element={<ConcursoVideogames />} />
+          <Route path="/concursos/jurado-cosplay" element={<JuradoCosplay />} />
           <Route path="/standistas" element={<Standistas />} />
           <Route path="/ingressos" element={<Ingressos />} />
           <Route path="/ajuda" element={<Ajuda />} />

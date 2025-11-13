@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      jurado_cosplay_applications: {
+        Row: {
+          concursos_ganhos: string
+          created_at: string
+          email: string
+          eventos_juri: string
+          foto_juri_urls: string[]
+          id: string
+          idade: number
+          nome_completo: string
+          pontuacao: number | null
+          seguidores_count: string
+          status: string
+          updated_at: string
+          video_url: string | null
+          whatsapp: string
+        }
+        Insert: {
+          concursos_ganhos: string
+          created_at?: string
+          email: string
+          eventos_juri: string
+          foto_juri_urls?: string[]
+          id?: string
+          idade: number
+          nome_completo: string
+          pontuacao?: number | null
+          seguidores_count: string
+          status?: string
+          updated_at?: string
+          video_url?: string | null
+          whatsapp: string
+        }
+        Update: {
+          concursos_ganhos?: string
+          created_at?: string
+          email?: string
+          eventos_juri?: string
+          foto_juri_urls?: string[]
+          id?: string
+          idade?: number
+          nome_completo?: string
+          pontuacao?: number | null
+          seguidores_count?: string
+          status?: string
+          updated_at?: string
+          video_url?: string | null
+          whatsapp?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
