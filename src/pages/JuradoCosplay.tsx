@@ -470,7 +470,7 @@ const JuradoCosplay = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-white">
-                              1. Quantos concursos você já ganhou a nível nacional (1º ou 2º lugar)? Em quais eventos? *
+                              1. Quantos concursos de cosplay você já ganhou a nível nacional? Em quais eventos? *
                             </FormLabel>
                             <FormControl>
                               <Textarea 
@@ -491,7 +491,7 @@ const JuradoCosplay = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-white">
-                              2. Quais eventos você já trabalhou antes como Júri a nível Nacional? *
+                              2. Quais eventos você já trabalhou antes como Júri, a nível Nacional? *
                             </FormLabel>
                             <FormControl>
                               <Textarea 
@@ -535,7 +535,7 @@ const JuradoCosplay = () => {
                               4. Quantos seguidores reais você tem na sua rede hoje? (pode ser TikTok) *
                             </FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="Ex: 15.000" className="bg-white/10 border-white/20 text-white" />
+                              <Input {...field} placeholder="Ex: 10.000 Seguidores no Instagram" className="bg-white/10 border-white/20 text-white placeholder:text-white/40" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
