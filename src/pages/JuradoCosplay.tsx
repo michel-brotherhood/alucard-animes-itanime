@@ -260,11 +260,11 @@ const JuradoCosplay = () => {
             <CardContent>
               {/* Progress Indicator */}
               <div className="mb-8">
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`text-sm font-semibold ${step >= 1 ? 'text-accent' : 'text-white/50'}`}>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
+                  <span className={`text-xs sm:text-sm font-semibold ${step >= 1 ? 'text-accent' : 'text-white/50'}`}>
                     Etapa 1: Informações Básicas
                   </span>
-                  <span className={`text-sm font-semibold ${step >= 2 ? 'text-accent' : 'text-white/50'}`}>
+                  <span className={`text-xs sm:text-sm font-semibold ${step >= 2 ? 'text-accent' : 'text-white/50'}`}>
                     Etapa 2: Portfólio
                   </span>
                 </div>
@@ -421,9 +421,9 @@ const JuradoCosplay = () => {
                             accept="image/*"
                             multiple
                             onChange={handleFotosChange}
-                            className="bg-white/10 border-white/20 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90"
+                            className="bg-white/10 border-white/20 text-white file:mr-2 file:py-2 file:px-3 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90 text-xs sm:text-sm pr-10"
                           />
-                          <Upload className="absolute right-3 top-3 w-5 h-5 text-white/50 pointer-events-none" />
+                          <Upload className="absolute right-3 top-3 w-4 h-4 sm:w-5 sm:h-5 text-white/50 pointer-events-none" />
                         </div>
                         {fotos.length > 0 && (
                           <p className="text-accent text-sm mt-2">{fotos.length} foto(s) selecionada(s)</p>
@@ -456,9 +456,9 @@ const JuradoCosplay = () => {
                             type="file"
                             accept="video/*"
                             onChange={handleVideoChange}
-                            className="bg-white/10 border-white/20 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90"
+                            className="bg-white/10 border-white/20 text-white file:mr-2 file:py-2 file:px-3 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90 text-xs sm:text-sm pr-10"
                           />
-                          <Upload className="absolute right-3 top-3 w-5 h-5 text-white/50 pointer-events-none" />
+                          <Upload className="absolute right-3 top-3 w-4 h-4 sm:w-5 sm:h-5 text-white/50 pointer-events-none" />
                         </div>
                         {video && (
                           <p className="text-accent text-sm mt-2">Vídeo selecionado: {video.name}</p>
