@@ -32,12 +32,14 @@ const faqs = [
     answer: (
       <>
         Online pelo site da Uticket e PIX via lista amiga.{" "}
-        <Link 
-          to="/ingressos" 
+        <a 
+          href="https://www.uticket.com.br/event/01LD7OB8BD0LUA" 
+          target="_blank"
+          rel="noopener noreferrer"
           className="font-bold text-primary hover:text-secondary underline transition-colors"
         >
           Veja todos os tipos de ingressos disponíveis aqui
-        </Link>
+        </a>
         .
       </>
     )
