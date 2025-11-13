@@ -115,14 +115,10 @@ const JuradoCosplay = () => {
     return { fotoUrls, videoUrl };
   };
 
-  const validateStep1 = () => {
+  const validateStep1 = async () => {
     const fields = ['nome_completo', 'idade', 'cidade', 'email', 'whatsapp'] as const;
-    let isValid = true;
-    fields.forEach(field => {
-      const result = form.trigger(field);
-      if (!result) isValid = false;
-    });
-    return isValid;
+    const results = await Promise.all(fields.map(field => form.trigger(field)));
+    return results.every(result => result);
   };
 
   const handleNextStep = async () => {
@@ -130,6 +126,8 @@ const JuradoCosplay = () => {
       const isValid = await validateStep1();
       if (isValid) {
         setStep(2);
+      } else {
+        toast.error("Por favor, preencha todos os campos obrigatórios antes de continuar");
       }
     }
   };
