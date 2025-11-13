@@ -275,29 +275,29 @@ const JuradoCosplay = () => {
       <SnowEffect />
       <Header />
 
-      <section className="bg-gradient-to-b from-secondary via-primary to-secondary py-16 px-6">
+      <section className="bg-gradient-to-b from-secondary via-primary to-secondary py-8 sm:py-12 md:py-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-accent to-accent/70 mb-4">
-              <Trophy className="w-10 h-10 text-primary" />
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-accent to-accent/70 mb-4">
+              <Trophy className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-accent mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-accent mb-4 px-2">
               QUERO SER JURADO DE COSPLAY
             </h1>
-            <div className="max-w-2xl mx-auto">
-              <p className="text-lg text-white/90 mb-2">
+            <div className="max-w-2xl mx-auto px-2">
+              <p className="text-base sm:text-lg text-white/90 mb-2">
                 Estamos abrindo vaga para jurado(a) dos eventos da marca
               </p>
-              <p className="text-2xl font-bold text-accent">
+              <p className="text-xl sm:text-2xl font-bold text-accent">
                 Alucard Animes
               </p>
             </div>
           </div>
 
           <Card className="bg-white/10 backdrop-blur-sm border-2 border-accent/30">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl">Informações da Vaga</CardTitle>
-              <CardDescription className="text-white/80 text-base space-y-2">
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-white text-xl sm:text-2xl">Informações da Vaga</CardTitle>
+              <CardDescription className="text-white/80 text-sm sm:text-base space-y-2">
                 <p><strong className="text-accent">Cachê:</strong> R$ 300,00 pelo dia de atuação</p>
                 <p className="mt-2">
                   <strong className="text-accent">Responsabilidades:</strong> Avaliar participantes com base em critérios de pontuação, 
@@ -311,9 +311,9 @@ const JuradoCosplay = () => {
               </CardDescription>
             </CardHeader>
 
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               {/* Progress Indicator */}
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
                   <span className={`text-xs sm:text-sm font-semibold ${step >= 1 ? 'text-accent' : 'text-white/50'}`}>
                     Etapa 1: Informações Básicas
@@ -331,32 +331,32 @@ const JuradoCosplay = () => {
               </div>
 
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                   {step === 1 && (
-                    <div className="bg-accent/20 p-6 rounded-lg border border-accent/30 space-y-4">
-                      <h3 className="text-xl font-bold text-accent mb-4">Informações Básicas</h3>
+                    <div className="bg-accent/20 p-4 sm:p-6 rounded-lg border border-accent/30 space-y-4">
+                      <h3 className="text-lg sm:text-xl font-bold text-accent mb-4">Informações Básicas</h3>
                       
                       <FormField
                         control={form.control}
                         name="nome_completo"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">Nome *</FormLabel>
+                            <FormLabel className="text-white text-sm sm:text-base">Nome *</FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="" className="bg-white/10 border-white/20 text-white placeholder:text-white/30" />
+                              <Input {...field} placeholder="" className="bg-white/10 border-white/20 text-white placeholder:text-white/30 h-11 sm:h-12 text-sm sm:text-base" />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-xs sm:text-sm" />
                           </FormItem>
                         )}
                       />
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <FormField
                           control={form.control}
                           name="whatsapp"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white">Telefone *</FormLabel>
+                              <FormLabel className="text-white text-sm sm:text-base">Telefone *</FormLabel>
                               <FormControl>
                                 <InputMask
                                   mask="(99) 99999-9999"
@@ -367,12 +367,12 @@ const JuradoCosplay = () => {
                                     <Input 
                                       {...inputProps} 
                                       placeholder="" 
-                                      className="bg-white/10 border-white/20 text-white placeholder:text-white/30" 
+                                      className="bg-white/10 border-white/20 text-white placeholder:text-white/30 h-11 sm:h-12 text-sm sm:text-base" 
                                     />
                                   )}
                                 </InputMask>
                               </FormControl>
-                              <FormMessage />
+                              <FormMessage className="text-xs sm:text-sm" />
                             </FormItem>
                           )}
                         />
@@ -382,17 +382,17 @@ const JuradoCosplay = () => {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white">E-mail *</FormLabel>
+                              <FormLabel className="text-white text-sm sm:text-base">E-mail *</FormLabel>
                               <FormControl>
-                                <Input type="email" {...field} placeholder="" className="bg-white/10 border-white/20 text-white placeholder:text-white/30" />
+                                <Input type="email" {...field} placeholder="" className="bg-white/10 border-white/20 text-white placeholder:text-white/30 h-11 sm:h-12 text-sm sm:text-base" />
                               </FormControl>
-                              <FormMessage />
+                              <FormMessage className="text-xs sm:text-sm" />
                             </FormItem>
                           )}
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <FormField
                           control={form.control}
                           name="idade"
@@ -447,20 +447,20 @@ const JuradoCosplay = () => {
                   )}
 
                   {step === 2 && (
-                    <div className="bg-accent/20 p-6 rounded-lg border border-accent/30 space-y-6">
+                    <div className="bg-accent/20 p-4 sm:p-6 rounded-lg border border-accent/30 space-y-4 sm:space-y-6">
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-xl font-bold text-accent">Fase de Pontuação - Portfólio</h3>
+                        <h3 className="text-lg sm:text-xl font-bold text-accent">Fase de Pontuação - Portfólio</h3>
                         <Button
                           type="button"
                           variant="ghost"
                           onClick={() => setStep(1)}
-                          className="text-white hover:text-accent"
+                          className="text-white hover:text-accent p-2 sm:p-3"
                         >
-                          <ChevronLeft className="mr-2 w-5 h-5" />
-                          Voltar
+                          <ChevronLeft className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                          <span className="text-xs sm:text-base">Voltar</span>
                         </Button>
                       </div>
-                      <p className="text-white/80 text-sm mb-6">
+                      <p className="text-white/80 text-xs sm:text-sm mb-4 sm:mb-6">
                         Cada etapa dessa fase será pontuada até o fim. Se chegar com a nota mais alta, você estará na classificatória.
                       </p>
 
@@ -469,7 +469,7 @@ const JuradoCosplay = () => {
                         name="concursos_ganhos"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">
+                            <FormLabel className="text-white text-sm sm:text-base">
                               1. Quantos concursos de cosplay você já ganhou a nível nacional? Em quais eventos? *
                             </FormLabel>
                             <FormControl>
@@ -477,10 +477,10 @@ const JuradoCosplay = () => {
                                 {...field} 
                                 rows={3} 
                                 placeholder="Ex: Brasil Game Show - 2º Lugar ( Tradicional ) e Anime Friends - 1º Lugar ( Desfile )"
-                                className="bg-white/10 border-white/20 text-white placeholder:text-white/40" 
+                                className="bg-white/10 border-white/20 text-white placeholder:text-white/40 text-sm sm:text-base resize-none" 
                               />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-xs sm:text-sm" />
                           </FormItem>
                         )}
                       />
@@ -490,7 +490,7 @@ const JuradoCosplay = () => {
                         name="eventos_juri"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">
+                            <FormLabel className="text-white text-sm sm:text-base">
                               2. Quais eventos você já trabalhou antes como Júri, a nível Nacional? *
                             </FormLabel>
                             <FormControl>
@@ -498,30 +498,30 @@ const JuradoCosplay = () => {
                                 {...field} 
                                 rows={3} 
                                 placeholder="Ex: BGS, Anime Friends, Sana, Itanime, Anime Nikity, Nitgeek Festival..."
-                                className="bg-white/10 border-white/20 text-white placeholder:text-white/40" 
+                                className="bg-white/10 border-white/20 text-white placeholder:text-white/40 text-sm sm:text-base resize-none" 
                               />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-xs sm:text-sm" />
                           </FormItem>
                         )}
                       />
 
                       <div className="mb-4">
-                        <Label className="text-white mb-2 block">
+                        <Label className="text-white mb-2 block text-sm sm:text-base">
                           3. Envie fotos suas como Júri em um dos eventos citados acima *
                         </Label>
-                        <div className="relative min-h-[56px]">
+                        <div className="relative min-h-[56px] sm:min-h-[64px]">
                           <Input
                             type="file"
                             accept="image/*"
                             multiple
                             onChange={handleFotosChange}
-                            className="bg-white/10 border-white/20 text-white h-14 sm:h-16 file:mr-3 file:h-10 sm:file:h-11 file:px-4 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90 text-xs sm:text-sm pr-12"
+                            className="bg-white/10 border-white/20 text-white h-14 sm:h-16 file:mr-2 sm:file:mr-3 file:h-10 sm:file:h-11 file:px-3 sm:file:px-4 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90 text-xs sm:text-sm pr-10 sm:pr-12"
                           />
                           <Upload className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-white/50 pointer-events-none" />
                         </div>
                         {fotos.length > 0 && (
-                          <p className="text-accent text-sm mt-2">{fotos.length} foto(s) selecionada(s)</p>
+                          <p className="text-accent text-xs sm:text-sm mt-2">{fotos.length} foto(s) selecionada(s)</p>
                         )}
                         <p className="text-white/60 text-xs mt-1">Máximo: 10MB por foto</p>
                       </div>
@@ -531,32 +531,32 @@ const JuradoCosplay = () => {
                         name="seguidores_count"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">
+                            <FormLabel className="text-white text-sm sm:text-base">
                               4. Quantos seguidores reais você tem na sua rede hoje? (pode ser TikTok) *
                             </FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="Ex: 10.000 Seguidores no Instagram" className="bg-white/10 border-white/20 text-white placeholder:text-white/40" />
+                              <Input {...field} placeholder="Ex: 10.000 Seguidores no Instagram" className="bg-white/10 border-white/20 text-white placeholder:text-white/40 h-11 sm:h-12 text-sm sm:text-base" />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-xs sm:text-sm" />
                           </FormItem>
                         )}
                       />
 
                       <div className="mb-4">
-                        <Label className="text-white mb-2 block">
+                        <Label className="text-white mb-2 block text-sm sm:text-base">
                           5. Envie algum vídeo seu explicando o por que você se difere dos demais candidatos
                         </Label>
-                        <div className="relative min-h-[56px]">
+                        <div className="relative min-h-[56px] sm:min-h-[64px]">
                           <Input
                             type="file"
                             accept="video/*"
                             onChange={handleVideoChange}
-                            className="bg-white/10 border-white/20 text-white h-14 sm:h-16 file:mr-3 file:h-10 sm:file:h-11 file:px-4 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90 text-xs sm:text-sm pr-12"
+                            className="bg-white/10 border-white/20 text-white h-14 sm:h-16 file:mr-2 sm:file:mr-3 file:h-10 sm:file:h-11 file:px-3 sm:file:px-4 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90 text-xs sm:text-sm pr-10 sm:pr-12"
                           />
                           <Upload className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-white/50 pointer-events-none" />
                         </div>
                         {video && (
-                          <p className="text-accent text-sm mt-2">Vídeo selecionado: {video.name}</p>
+                          <p className="text-accent text-xs sm:text-sm mt-2">Vídeo selecionado: {video.name}</p>
                         )}
                         <p className="text-white/60 text-xs mt-1">Máximo: 50MB</p>
                       </div>
@@ -564,15 +564,15 @@ const JuradoCosplay = () => {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-accent text-primary hover:bg-accent/90 font-bold text-lg py-6 rounded-full"
+                        className="w-full bg-accent text-primary hover:bg-accent/90 font-bold text-base sm:text-lg py-5 sm:py-6 rounded-full"
                       >
                         {isSubmitting ? (
                           <>
-                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                            <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                             Enviando...
                           </>
                         ) : (
-                          "ENVIAR INSCRIÇÃO"
+                          'Enviar Inscrição'
                         )}
                       </Button>
                     </div>
