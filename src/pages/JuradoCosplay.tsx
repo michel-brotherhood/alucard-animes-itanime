@@ -286,9 +286,14 @@ const JuradoCosplay = () => {
             <h1 className="text-4xl md:text-5xl font-black text-accent mb-4">
               QUERO SER JURADO DE COSPLAY
             </h1>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto">
-              Estamos abrindo vaga para jurado(a) de cultura pop.
-            </p>
+            <div className="max-w-2xl mx-auto">
+              <p className="text-lg text-white/90 mb-2">
+                Estamos abrindo vaga para jurado(a) dos eventos da marca
+              </p>
+              <p className="text-2xl font-bold text-accent">
+                Alucard Animes
+              </p>
+            </div>
           </div>
 
           <Card className="bg-white/10 backdrop-blur-sm border-2 border-accent/30">
