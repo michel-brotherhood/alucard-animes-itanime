@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import InputMask from "react-input-mask";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingMenu from "@/components/FloatingMenu";
@@ -14,16 +15,19 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Trophy, Upload, Loader2 } from "lucide-react";
+import { Trophy, Upload, Loader2, ChevronRight, ChevronLeft } from "lucide-react";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const MAX_VIDEO_SIZE = 50 * 1024 * 1024; // 50MB
 
 const formSchema = z.object({
-  nome_completo: z.string().trim().min(3, "Nome completo é obrigatório"),
+  nome_completo: z.string().trim().min(3, "Nome completo é obrigatório").refine(
+    (val) => val.trim().split(/\s+/).length >= 2,
+    "Digite seu nome e sobrenome"
+  ),
   idade: z.coerce.number().min(18, "Idade mínima: 18 anos").max(100, "Idade inválida"),
   email: z.string().trim().email("E-mail inválido"),
-  whatsapp: z.string().trim().min(10, "WhatsApp inválido"),
+  whatsapp: z.string().trim().min(14, "WhatsApp inválido"),
   concursos_ganhos: z.string().trim().min(10, "Por favor, descreva sua experiência"),
   eventos_juri: z.string().trim().min(10, "Por favor, liste os eventos"),
   seguidores_count: z.string().trim().min(1, "Informe o número de seguidores"),
@@ -32,9 +36,11 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const JuradoCosplay = () => {
+  const [step, setStep] = useState(1);
   const [fotos, setFotos] = useState<File[]>([]);
   const [video, setVideo] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showDisqualified, setShowDisqualified] = useState(false);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -106,16 +112,42 @@ const JuradoCosplay = () => {
     return { fotoUrls, videoUrl };
   };
 
+  const validateStep1 = () => {
+    const fields = ['nome_completo', 'idade', 'email', 'whatsapp'] as const;
+    let isValid = true;
+    fields.forEach(field => {
+      const result = form.trigger(field);
+      if (!result) isValid = false;
+    });
+    return isValid;
+  };
+
+  const handleNextStep = async () => {
+    if (step === 1) {
+      const isValid = await validateStep1();
+      if (isValid) {
+        setStep(2);
+      }
+    }
+  };
+
   const onSubmit = async (data: FormData) => {
     if (fotos.length === 0) {
       toast.error("Por favor, envie pelo menos uma foto sua como júri");
       return;
     }
 
+    // Calculate score - 50 points if no video
+    const pontuacao = video ? 100 : 50;
+    
+    if (pontuacao === 50) {
+      setShowDisqualified(true);
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Criar a aplicação primeiro
       const { data: application, error: insertError } = await supabase
         .from('jurado_cosplay_applications')
         .insert({
@@ -128,16 +160,15 @@ const JuradoCosplay = () => {
           seguidores_count: data.seguidores_count,
           foto_juri_urls: [],
           video_url: null,
+          pontuacao: pontuacao,
         })
         .select()
         .single();
 
       if (insertError) throw insertError;
 
-      // Fazer upload dos arquivos
       const { fotoUrls, videoUrl } = await uploadFiles(application.id);
 
-      // Atualizar a aplicação com as URLs dos arquivos
       const { error: updateError } = await supabase
         .from('jurado_cosplay_applications')
         .update({
@@ -152,6 +183,7 @@ const JuradoCosplay = () => {
       form.reset();
       setFotos([]);
       setVideo(null);
+      setStep(1);
     } catch (error: any) {
       console.error('Erro ao enviar inscrição:', error);
       toast.error(`Erro ao enviar inscrição: ${error.message}`);
@@ -159,6 +191,35 @@ const JuradoCosplay = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (showDisqualified) {
+    return (
+      <div className="min-h-screen overflow-x-hidden">
+        <SnowEffect />
+        <Header />
+        <section className="bg-gradient-to-b from-secondary via-primary to-secondary py-16 px-6 min-h-[80vh] flex items-center justify-center">
+          <div className="max-w-2xl mx-auto text-center">
+            <Card className="bg-white/10 backdrop-blur-sm border-2 border-accent/30">
+              <CardContent className="p-12">
+                <Trophy className="w-20 h-20 text-accent mx-auto mb-6 opacity-50" />
+                <h2 className="text-3xl font-black text-white mb-4">
+                  Obrigado por seu interesse!
+                </h2>
+                <p className="text-white/80 text-lg mb-6">
+                  Infelizmente, sua pontuação não foi suficiente para se qualificar para a vaga.
+                </p>
+                <p className="text-white/60">
+                  Mais sorte na próxima vez!
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+        <Footer />
+        <FloatingMenu />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -197,176 +258,230 @@ const JuradoCosplay = () => {
             </CardHeader>
 
             <CardContent>
+              {/* Progress Indicator */}
+              <div className="mb-8">
+                <div className="flex items-center justify-between mb-2">
+                  <span className={`text-sm font-semibold ${step >= 1 ? 'text-accent' : 'text-white/50'}`}>
+                    Etapa 1: Informações Básicas
+                  </span>
+                  <span className={`text-sm font-semibold ${step >= 2 ? 'text-accent' : 'text-white/50'}`}>
+                    Etapa 2: Portfólio
+                  </span>
+                </div>
+                <div className="w-full bg-white/10 rounded-full h-2">
+                  <div 
+                    className="bg-accent h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${(step / 2) * 100}%` }}
+                  />
+                </div>
+              </div>
+
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="bg-accent/20 p-6 rounded-lg border border-accent/30">
-                    <h3 className="text-xl font-bold text-accent mb-4">Informações Básicas</h3>
-                    
-                    <FormField
-                      control={form.control}
-                      name="nome_completo"
-                      render={({ field }) => (
-                        <FormItem className="mb-4">
-                          <FormLabel className="text-white">Nome Completo *</FormLabel>
-                          <FormControl>
-                            <Input {...field} className="bg-white/10 border-white/20 text-white" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                  {step === 1 && (
+                    <div className="bg-accent/20 p-6 rounded-lg border border-accent/30 space-y-4">
+                      <h3 className="text-xl font-bold text-accent mb-4">Informações Básicas</h3>
+                      
+                      <FormField
+                        control={form.control}
+                        name="nome_completo"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Nome Completo *</FormLabel>
+                            <FormControl>
+                              <Input {...field} placeholder="" className="bg-white/10 border-white/20 text-white placeholder:text-white/30" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                    <FormField
-                      control={form.control}
-                      name="idade"
-                      render={({ field }) => (
-                        <FormItem className="mb-4">
-                          <FormLabel className="text-white">Idade *</FormLabel>
-                          <FormControl>
-                            <Input type="number" {...field} className="bg-white/10 border-white/20 text-white" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                      <FormField
+                        control={form.control}
+                        name="idade"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Idade *</FormLabel>
+                            <FormControl>
+                              <Input type="number" {...field} placeholder="" className="bg-white/10 border-white/20 text-white placeholder:text-white/30" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem className="mb-4">
-                          <FormLabel className="text-white">E-mail *</FormLabel>
-                          <FormControl>
-                            <Input type="email" {...field} className="bg-white/10 border-white/20 text-white" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">E-mail *</FormLabel>
+                            <FormControl>
+                              <Input type="email" {...field} placeholder="" className="bg-white/10 border-white/20 text-white placeholder:text-white/30" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                    <FormField
-                      control={form.control}
-                      name="whatsapp"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white">WhatsApp *</FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="(21) 99999-9999" className="bg-white/10 border-white/20 text-white" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
+                      <FormField
+                        control={form.control}
+                        name="whatsapp"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">WhatsApp *</FormLabel>
+                            <FormControl>
+                              <InputMask
+                                mask="(99) 99999-9999"
+                                value={field.value}
+                                onChange={field.onChange}
+                              >
+                                {(inputProps: any) => (
+                                  <Input 
+                                    {...inputProps} 
+                                    placeholder="" 
+                                    className="bg-white/10 border-white/20 text-white placeholder:text-white/30" 
+                                  />
+                                )}
+                              </InputMask>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                  <div className="bg-accent/20 p-6 rounded-lg border border-accent/30">
-                    <h3 className="text-xl font-bold text-accent mb-4">Fase de Pontuação - Portfólio</h3>
-                    <p className="text-white/80 mb-6 text-sm">
-                      Cada etapa dessa fase será pontuada até o fim. Se chegar com a nota mais alta, você estará na classificatória.
-                    </p>
-
-                    <FormField
-                      control={form.control}
-                      name="concursos_ganhos"
-                      render={({ field }) => (
-                        <FormItem className="mb-4">
-                          <FormLabel className="text-white">
-                            1. Quantos concursos você já ganhou a nível nacional (1º ou 2º lugar)? Em quais eventos? *
-                          </FormLabel>
-                          <FormControl>
-                            <Textarea {...field} rows={4} className="bg-white/10 border-white/20 text-white" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="eventos_juri"
-                      render={({ field }) => (
-                        <FormItem className="mb-4">
-                          <FormLabel className="text-white">
-                            2. Quais eventos você já trabalhou antes como Júri a nível Nacional? *
-                          </FormLabel>
-                          <FormControl>
-                            <Textarea {...field} rows={4} className="bg-white/10 border-white/20 text-white" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <div className="mb-4">
-                      <Label className="text-white mb-2 block">
-                        3. Envie fotos suas como Júri em um dos eventos citados acima *
-                      </Label>
-                      <div className="relative">
-                        <Input
-                          type="file"
-                          accept="image/*"
-                          multiple
-                          onChange={handleFotosChange}
-                          className="bg-white/10 border-white/20 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90"
-                        />
-                        <Upload className="absolute right-3 top-3 w-5 h-5 text-white/50 pointer-events-none" />
-                      </div>
-                      {fotos.length > 0 && (
-                        <p className="text-accent text-sm mt-2">{fotos.length} foto(s) selecionada(s)</p>
-                      )}
-                      <p className="text-white/60 text-xs mt-1">Máximo: 10MB por foto</p>
+                      <Button
+                        type="button"
+                        onClick={handleNextStep}
+                        className="w-full bg-accent text-primary hover:bg-accent/90 font-bold text-lg py-6 rounded-full mt-6"
+                      >
+                        Próxima Etapa
+                        <ChevronRight className="ml-2 w-5 h-5" />
+                      </Button>
                     </div>
+                  )}
 
-                    <FormField
-                      control={form.control}
-                      name="seguidores_count"
-                      render={({ field }) => (
-                        <FormItem className="mb-4">
-                          <FormLabel className="text-white">
-                            4. Quantos seguidores reais você tem na sua rede hoje? (pode ser TikTok) *
-                          </FormLabel>
-                          <FormControl>
-                            <Input {...field} placeholder="Ex: 15.000" className="bg-white/10 border-white/20 text-white" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <div>
-                      <Label className="text-white mb-2 block">
-                        5. Envie algum vídeo seu explicando o por que você se difere dos demais candidatos
-                      </Label>
-                      <div className="relative">
-                        <Input
-                          type="file"
-                          accept="video/*"
-                          onChange={handleVideoChange}
-                          className="bg-white/10 border-white/20 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90"
-                        />
-                        <Upload className="absolute right-3 top-3 w-5 h-5 text-white/50 pointer-events-none" />
+                  {step === 2 && (
+                    <div className="bg-accent/20 p-6 rounded-lg border border-accent/30 space-y-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-xl font-bold text-accent">Fase de Pontuação - Portfólio</h3>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          onClick={() => setStep(1)}
+                          className="text-white hover:text-accent"
+                        >
+                          <ChevronLeft className="mr-2 w-5 h-5" />
+                          Voltar
+                        </Button>
                       </div>
-                      {video && (
-                        <p className="text-accent text-sm mt-2">Vídeo selecionado: {video.name}</p>
-                      )}
-                      <p className="text-white/60 text-xs mt-1">Máximo: 50MB</p>
-                    </div>
-                  </div>
+                      <p className="text-white/80 text-sm mb-6">
+                        Cada etapa dessa fase será pontuada até o fim. Se chegar com a nota mais alta, você estará na classificatória.
+                      </p>
 
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-accent text-primary hover:bg-accent/90 font-bold text-lg py-6 rounded-full"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        Enviando...
-                      </>
-                    ) : (
-                      "ENVIAR INSCRIÇÃO"
-                    )}
-                  </Button>
+                      <FormField
+                        control={form.control}
+                        name="concursos_ganhos"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">
+                              1. Quantos concursos você já ganhou a nível nacional (1º ou 2º lugar)? Em quais eventos? *
+                            </FormLabel>
+                            <FormControl>
+                              <Textarea {...field} rows={3} className="bg-white/10 border-white/20 text-white" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="eventos_juri"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">
+                              2. Quais eventos você já trabalhou antes como Júri a nível Nacional? *
+                            </FormLabel>
+                            <FormControl>
+                              <Textarea {...field} rows={3} className="bg-white/10 border-white/20 text-white" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <div>
+                        <Label className="text-white mb-2 block">
+                          3. Envie fotos suas como Júri em um dos eventos citados acima *
+                        </Label>
+                        <div className="relative">
+                          <Input
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={handleFotosChange}
+                            className="bg-white/10 border-white/20 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90"
+                          />
+                          <Upload className="absolute right-3 top-3 w-5 h-5 text-white/50 pointer-events-none" />
+                        </div>
+                        {fotos.length > 0 && (
+                          <p className="text-accent text-sm mt-2">{fotos.length} foto(s) selecionada(s)</p>
+                        )}
+                        <p className="text-white/60 text-xs mt-1">Máximo: 10MB por foto</p>
+                      </div>
+
+                      <FormField
+                        control={form.control}
+                        name="seguidores_count"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">
+                              4. Quantos seguidores reais você tem na sua rede hoje? (pode ser TikTok) *
+                            </FormLabel>
+                            <FormControl>
+                              <Input {...field} placeholder="Ex: 15.000" className="bg-white/10 border-white/20 text-white" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <div>
+                        <Label className="text-white mb-2 block">
+                          5. Envie algum vídeo seu explicando o por que você se difere dos demais candidatos
+                        </Label>
+                        <div className="relative">
+                          <Input
+                            type="file"
+                            accept="video/*"
+                            onChange={handleVideoChange}
+                            className="bg-white/10 border-white/20 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-primary hover:file:bg-accent/90"
+                          />
+                          <Upload className="absolute right-3 top-3 w-5 h-5 text-white/50 pointer-events-none" />
+                        </div>
+                        {video && (
+                          <p className="text-accent text-sm mt-2">Vídeo selecionado: {video.name}</p>
+                        )}
+                        <p className="text-white/60 text-xs mt-1">Máximo: 50MB</p>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-accent text-primary hover:bg-accent/90 font-bold text-lg py-6 rounded-full"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                            Enviando...
+                          </>
+                        ) : (
+                          "ENVIAR INSCRIÇÃO"
+                        )}
+                      </Button>
+                    </div>
+                  )}
                 </form>
               </Form>
             </CardContent>
