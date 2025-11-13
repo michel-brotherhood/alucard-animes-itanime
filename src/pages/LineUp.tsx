@@ -7,17 +7,38 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Instagram } from "lucide-react";
 import eventLogo from "@/assets/itanime-logo.svg";
+import raphaelVideo from "@/assets/raphael-freitas-performance.mp4";
+
+type ArtistWithVideo = {
+  name: string;
+  role: string;
+  video: string;
+  instagram: string;
+};
+
+type ComingSoonArtist = {
+  name: string;
+  role: string;
+  logo: true;
+};
+
+type Artist = ArtistWithVideo | ComingSoonArtist;
 
 const guests = [
   {
     category: "Artistas",
     icon: Star,
     items: [
-      { name: "", role: "Em breve...", logo: true } as const,
-      { name: "", role: "Em breve...", logo: true } as const,
-      { name: "", role: "Em breve...", logo: true } as const,
-      { name: "", role: "Em breve...", logo: true } as const,
-    ],
+      { 
+        name: "Raphael Freitas", 
+        role: "O Guitarrista Raphael Freitas e seu projeto Me and the Machine farão um show épico com músicas de games retrô que marcaram gerações — tudo ao som de uma guitarra eletrizante! Se você é fã de nostalgia, games e boa música, esse momento é imperdível!",
+        video: raphaelVideo,
+        instagram: "https://www.instagram.com/meand_themachine/"
+      } as ArtistWithVideo,
+      { name: "", role: "Em breve...", logo: true } as ComingSoonArtist,
+      { name: "", role: "Em breve...", logo: true } as ComingSoonArtist,
+      { name: "", role: "Em breve...", logo: true } as ComingSoonArtist,
+    ] as Artist[],
   },
 ];
 
@@ -48,17 +69,49 @@ const LineUp = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {category.items.map((item, index) => (
-                    <Card key={index} className="bg-white/10 backdrop-blur-sm border-accent/30 hover:border-accent transition-all">
-                      <CardContent className="p-6 text-center">
-                        <div className="w-32 h-32 mx-auto mb-4 flex items-center justify-center">
-                          <img 
-                            src={eventLogo} 
-                            alt="Itanime"
-                            className="w-full h-full object-contain opacity-50"
-                          />
-                        </div>
-                        {item.name && <h3 className="text-xl font-bold text-white mb-2">{item.name}</h3>}
-                        <p className="text-white/70 text-sm mb-3">{item.role}</p>
+                    <Card key={index} className="bg-white/10 backdrop-blur-sm border-2 border-accent hover:border-accent/80 transition-all rounded-3xl overflow-hidden">
+                      <CardContent className="p-0">
+                        {'video' in item ? (
+                          <>
+                            <div className="relative w-full aspect-video border-4 border-red-500 rounded-t-3xl overflow-hidden">
+                              <video 
+                                src={item.video}
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                              />
+                            </div>
+                            <div className="p-6 text-center">
+                              <h3 className="text-2xl font-bold text-white mb-3">{item.name}</h3>
+                              <p className="text-white/90 text-sm mb-4 leading-relaxed">{item.role}</p>
+                              {'instagram' in item && item.instagram && (
+                                <Button 
+                                  className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold rounded-full"
+                                  asChild
+                                >
+                                  <a href={item.instagram} target="_blank" rel="noopener noreferrer">
+                                    <Instagram className="w-4 h-4" />
+                                    Conhecer mais
+                                  </a>
+                                </Button>
+                              )}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="p-6 text-center">
+                            <div className="w-32 h-32 mx-auto mb-4 flex items-center justify-center">
+                              <img 
+                                src={eventLogo} 
+                                alt="Itanime"
+                                className="w-full h-full object-contain opacity-50"
+                              />
+                            </div>
+                            {item.name && <h3 className="text-xl font-bold text-white mb-2">{item.name}</h3>}
+                            <p className="text-white/70 text-sm mb-3">{item.role}</p>
+                          </div>
+                        )}
                       </CardContent>
                     </Card>
                   ))}
