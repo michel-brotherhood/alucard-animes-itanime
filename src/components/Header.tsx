@@ -154,13 +154,13 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
-          <Link to="/ingressos">
+          <a href="https://www.uticket.com.br/event/01LD7OB8BD0LUA" target="_blank" rel="noopener noreferrer">
             <Button 
               className="bg-accent text-primary hover:bg-accent/90 font-bold text-xs md:text-sm px-4 md:px-8 py-2 md:py-2.5 rounded-full shadow-lg"
             >
               Ingressos
             </Button>
-          </Link>
+          </a>
           
           <button 
             className="lg:hidden text-white ml-2"
@@ -313,15 +313,17 @@ const Header = () => {
                 </div>
 
                 {/* CTA Button */}
-                <Link 
-                  to="/ingressos"
+                <a 
+                  href="https://www.uticket.com.br/event/01LD7OB8BD0LUA"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
-                  className="mt-4"
+                  className="mt-4 block"
                 >
                   <Button className="w-full bg-accent text-primary hover:bg-accent/90 font-bold py-5 rounded-full">
                     COMPRAR INGRESSOS
                   </Button>
-                </Link>
+                </a>
               </nav>
             </div>
           </div>

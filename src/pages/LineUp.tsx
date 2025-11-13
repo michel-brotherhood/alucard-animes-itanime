@@ -136,7 +136,9 @@ const LineUp = () => {
             Garanta seu ingresso agora e curta todos os artistas e atrações do Itanime!
           </p>
           <a 
-            href="/#ingressos" 
+            href="https://www.uticket.com.br/event/01LD7OB8BD0LUA"
+            target="_blank"
+            rel="noopener noreferrer" 
             className="inline-block bg-primary hover:bg-primary/90 text-white font-black text-xl px-12 py-4 rounded-full shadow-lg transition-all hover:scale-105"
           >
             Comprar Ingressos
