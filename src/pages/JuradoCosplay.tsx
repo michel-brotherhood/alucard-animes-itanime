@@ -287,7 +287,7 @@ const JuradoCosplay = () => {
               QUERO SER JURADO DE COSPLAY
             </h1>
             <p className="text-lg text-white/90 max-w-2xl mx-auto">
-              Estamos abrindo vaga para jurado(a) de concurso de cosplay de cultura pop.
+              Estamos abrindo vaga para jurado(a) de cultura pop.
             </p>
           </div>
 
