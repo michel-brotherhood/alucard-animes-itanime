@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  
+  <!-- Página Principal -->
+  <url>
+    <loc>https://www.itanime.com.br/</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- O Evento -->
+  <url>
+    <loc>https://www.itanime.com.br/o-evento</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Ingressos -->
+  <url>
+    <loc>https://www.itanime.com.br/ingressos</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Concursos -->
+  <url>
+    <loc>https://www.itanime.com.br/concursos</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Concurso Cosplay -->
+  <url>
+    <loc>https://www.itanime.com.br/concursos/cosplay</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Concurso K-pop -->
+  <url>
+    <loc>https://www.itanime.com.br/concursos/kpop</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Concurso Videogames -->
+  <url>
+    <loc>https://www.itanime.com.br/concursos/videogames</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Concurso Animeke -->
+  <url>
+    <loc>https://www.itanime.com.br/concursos/animeke</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Quero ser Jurado Cosplay -->
+  <url>
+    <loc>https://www.itanime.com.br/jurado-cosplay</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Standistas -->
+  <url>
+    <loc>https://www.itanime.com.br/standistas</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Line-up -->
+  <url>
+    <loc>https://www.itanime.com.br/line-up</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cronograma -->
+  <url>
+    <loc>https://www.itanime.com.br/cronograma</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mapa do Evento -->
+  <url>
+    <loc>https://www.itanime.com.br/mapa</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Quem Somos -->
+  <url>
+    <loc>https://www.itanime.com.br/quem-somos</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contato -->
+  <url>
+    <loc>https://www.itanime.com.br/contato</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Ajuda -->
+  <url>
+    <loc>https://www.itanime.com.br/ajuda</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- Política de Privacidade -->
+  <url>
+    <loc>https://www.itanime.com.br/privacy</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
