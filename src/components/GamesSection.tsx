@@ -2,11 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Swords, Music, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
-import mortalKombat from "@/assets/mortal-kombat-1.png";
-import streetFighter from "@/assets/street-fighter-6.png";
-import tekken8 from "@/assets/tekken-8.png";
-import justDance from "@/assets/just-dance.jpg";
-import fifa2025 from "@/assets/fifa-2025.jpg";
+import mortalKombat from "@/assets/mortal-kombat-1.webp";
+import streetFighter from "@/assets/street-fighter-6.webp";
+import tekken8 from "@/assets/tekken-8-banner.webp";
+import justDance from "@/assets/just-dance.webp";
+import fifa2025 from "@/assets/fifa-2025.webp";
+import leagueOfLegends from "@/assets/league-of-legends.webp";
 
 const GamesSection = () => {
   const games = [
@@ -45,6 +46,13 @@ const GamesSection = () => {
       icon: Music,
       gradient: "from-pink-600 to-purple-500",
     },
+    {
+      title: "League of Legends",
+      category: "MOBA",
+      image: leagueOfLegends,
+      icon: Gamepad2,
+      gradient: "from-purple-600 to-blue-500",
+    },
   ];
 
   return (
@@ -61,7 +69,7 @@ const GamesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {games.map((game, index) => {
             const Icon = game.icon;
             return (

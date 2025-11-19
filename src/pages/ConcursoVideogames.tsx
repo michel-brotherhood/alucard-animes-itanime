@@ -4,11 +4,12 @@ import FloatingMenu from "@/components/FloatingMenu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Clock, Users, Gamepad2 } from "lucide-react";
-import mortalKombat from "@/assets/mortal-kombat-1.png";
-import streetFighter from "@/assets/street-fighter-6.png";
-import tekken8 from "@/assets/tekken-8.png";
-import justDance from "@/assets/just-dance.jpg";
-import fifa2025 from "@/assets/fifa-2025.jpg";
+import mortalKombat from "@/assets/mortal-kombat-1.webp";
+import streetFighter from "@/assets/street-fighter-6.webp";
+import tekken8 from "@/assets/tekken-8-banner.webp";
+import justDance from "@/assets/just-dance.webp";
+import fifa2025 from "@/assets/fifa-2025.webp";
+import leagueOfLegends from "@/assets/league-of-legends.webp";
 import gamesBackground from "@/assets/games-background.jpg";
 
 const ConcursoVideogames = () => {
@@ -37,6 +38,11 @@ const ConcursoVideogames = () => {
       title: "Just Dance",
       categoria: "Dança",
       image: justDance,
+    },
+    {
+      title: "League of Legends",
+      categoria: "MOBA",
+      image: leagueOfLegends,
     },
   ];
 
@@ -97,7 +103,7 @@ const ConcursoVideogames = () => {
           {/* Jogos Disponíveis */}
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-center mb-8">Jogos Disponíveis</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {jogos.map((jogo, index) => (
                 <Card key={index} className="overflow-hidden group hover:scale-105 transition-all duration-300 hover:shadow-2xl">
                   <div className="relative h-80 overflow-hidden">
