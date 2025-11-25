@@ -1,22 +1,16 @@
-# Welcome to your Lovable project
+# Itanime 2025 - Site Oficial
 
-## Project info
+## Informações do Projeto
 
-**URL**: https://lovable.dev/projects/d1fd459c-99c4-4286-a6f3-88ed00101532
+**Domínio**: https://www.itanime.com.br
 
-## How can I edit this code?
+## Como editar este código?
 
-There are several ways of editing your application.
+Existem várias formas de editar esta aplicação.
 
-**Use Lovable**
+**Clone o repositório**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d1fd459c-99c4-4286-a6f3-88ed00101532) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Clone este repositório e faça as alterações necessárias. As mudanças podem ser enviadas via push para o repositório.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -60,14 +54,10 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Como fazer deploy deste projeto?
 
-Simply open [Lovable](https://lovable.dev/projects/d1fd459c-99c4-4286-a6f3-88ed00101532) and click on Share -> Publish.
+Este projeto pode ser hospedado em diversos serviços como Vercel, Netlify, ou qualquer provedor de hospedagem estática que suporte React.
 
-## Can I connect a custom domain to my Lovable project?
+## Domínio Customizado
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+O site está configurado para usar o domínio: **https://www.itanime.com.br**
