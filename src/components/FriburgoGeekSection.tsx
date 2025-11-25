@@ -85,7 +85,7 @@ const FriburgoGeekSection = () => {
         {/* Social CTAs */}
         <div className="flex justify-center gap-4">
           <a
-            href="https://www.instagram.com/friburgogeek/"
+            href="https://www.instagram.com/eventoitanime/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white/10 backdrop-blur-sm border-2 border-accent/30 rounded-full p-4 hover:bg-accent/20 hover:scale-110 transition-all"
@@ -94,7 +94,7 @@ const FriburgoGeekSection = () => {
             <Instagram className="w-6 h-6 text-accent" />
           </a>
           <a
-            href="https://www.facebook.com/friburgogeek"
+            href="https://www.facebook.com/eventoitanime/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white/10 backdrop-blur-sm border-2 border-accent/30 rounded-full p-4 hover:bg-accent/20 hover:scale-110 transition-all"
